@@ -1,0 +1,12 @@
+{
+    "number_1": {
+        "title": "Number 1",
+        "description": "The first number to multiply",
+        "type": "integer"
+    },
+    "number_2": {
+        "title": "Number 2",
+        "description": "The second number to multiply",
+        "type": "integer"
+    }
+}
