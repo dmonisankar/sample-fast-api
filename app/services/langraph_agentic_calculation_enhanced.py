@@ -11,14 +11,35 @@ from langgraph.checkpoint.memory import MemorySaver
 
 from app.utils import generate_unique_id
 
+from langchain_ibm import ChatWatsonx
+
+from app.config import WATSONX_APIKEY
+from app.config import WATSONX_PROJECT_ID
+from app.config import WATSONX_URL
+
 tools = [add_numbers, multiply_numbers, divide_number]
 # llm = ChatOpenAI(model="gpt-4o")
-llm = ChatOpenAI(model="gpt-3.5-turbo-0125") 
+# llm = ChatOpenAI(model="gpt-3.5-turbo-0125") 
+# ibm/granite-3-8b-instruct  -- memory not working
+llm = ChatWatsonx(
+    model_id="mistralai/mistral-large",
+    url = WATSONX_URL,
+	apikey = WATSONX_APIKEY,
+	project_id = WATSONX_PROJECT_ID,
+    params = {
+        "decoding_method": "greedy",
+        "temperature": 0, 
+        "min_new_tokens": 5, 
+        "max_new_tokens": 2000
+    }
+)
+
 
 # For this ipynb we set parallel tool calling to false as math generally is done sequentially, and this time we have 3 tools that can do math
 # the OpenAI model specifically defaults to parallel tool calling for efficiency, see https://python.langchain.com/docs/how_to/tool_calling_parallel/
 # play around with it and see how the model behaves with math equations!
-llm_with_tools = llm.bind_tools(tools, parallel_tool_calls=False)
+# llm_with_tools = llm.bind_tools(tools, parallel_tool_calls=False)
+llm_with_tools = llm.bind_tools(tools)
 
 
 # System message
