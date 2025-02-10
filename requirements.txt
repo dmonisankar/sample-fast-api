@@ -8,6 +8,11 @@ langchain
 langchain-core
 langchain-openai
 langchain_community
+langchain-ibm
+
+youtube_search
+pyowm
+# ionic-langchain
 
 pyautogen
 

@@ -7,6 +7,7 @@ from app.services.llm_service import get_llm_response
 from app.services.agentic_calculation import get_calculation
 from app.services.langraph_agentic_calculation import get_langraph_calculation
 from app.services.langraph_agentic_calculation_enhanced import get_langraph_calculation_with_memory
+from app.services.llm_watsonx import get_info_watsonx
 
 router = APIRouter()
 
@@ -106,3 +107,14 @@ async def ask_langraph_llm_with_memory(request: LLMRequestWithMemory):
         raise HTTPException(status_code=500, detail=response)
     
     return {"prompt": request.prompt, "response": response, "conversation_id": conversation_id}
+
+@router.post("/ask_watson/")
+async def ask_watson(request: LLMRequest):
+    """Takes user input (prompt) and returns an AI-generated response."""
+
+    response = await get_info_watsonx(request.prompt)
+    
+    if "Error" in response:
+        raise HTTPException(status_code=500, detail=response)
+    
+    return {"prompt": request.prompt, "response": response}
