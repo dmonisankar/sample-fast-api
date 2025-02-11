@@ -92,4 +92,4 @@ async def get_langraph_calculation_with_memory(
         return last_message.pretty_repr(), conversation_id
 
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"Error: {str(e)}", (conversation_id or "unknown")
