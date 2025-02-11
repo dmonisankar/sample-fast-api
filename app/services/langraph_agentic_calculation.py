@@ -1,7 +1,11 @@
-from app.services.tools.calculation_tools import add_numbers, multiply_numbers, divide_number
+from app.services.tools.calculation_tools import (
+    add_numbers,
+    multiply_numbers,
+    divide_number,
+)
 from langchain_openai import ChatOpenAI
 from langgraph.graph import MessagesState
-from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
 from langgraph.graph import START, StateGraph
 from langgraph.prebuilt import tools_condition
@@ -9,7 +13,7 @@ from langgraph.prebuilt import ToolNode
 
 tools = [add_numbers, multiply_numbers, divide_number]
 # llm = ChatOpenAI(model="gpt-4o")
-llm = ChatOpenAI(model="gpt-3.5-turbo-0125") 
+llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
 
 # For this ipynb we set parallel tool calling to false as math generally is done sequentially, and this time we have 3 tools that can do math
 # the OpenAI model specifically defaults to parallel tool calling for efficiency, see https://python.langchain.com/docs/how_to/tool_calling_parallel/
@@ -18,11 +22,14 @@ llm_with_tools = llm.bind_tools(tools, parallel_tool_calls=False)
 
 
 # System message
-sys_msg = SystemMessage(content="You are a helpful assistant tasked with performing arithmetic on a set of inputs.")
+sys_msg = SystemMessage(
+    content="You are a helpful assistant tasked with performing arithmetic on a set of inputs."
+)
+
 
 # Node
 def assistant(state: MessagesState):
-   return {"messages": [llm_with_tools.invoke([sys_msg] + state["messages"])]}
+    return {"messages": [llm_with_tools.invoke([sys_msg] + state["messages"])]}
 
 
 # Graph
@@ -51,6 +58,6 @@ async def get_langraph_calculation(prompt: str) -> str:
         messages = react_graph.invoke({"messages": messages})
         last_message = messages["messages"][-1]
         return last_message.pretty_repr()
-    
+
     except Exception as e:
         return f"Error: {str(e)}"

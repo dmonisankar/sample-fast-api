@@ -1,11 +1,5 @@
-import openai
-import os
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage
-
-import asyncio
-from langchain.utilities import WikipediaAPIWrapper  # For Wikipedia tool
-from langchain.agents import Tool
 
 
 from app.config import OPENAI_API_KEY
@@ -28,6 +22,3 @@ async def get_llm_response(prompt: str) -> str:
         return response.content
     except Exception as e:
         return f"Error: {str(e)}"
-
-
-
