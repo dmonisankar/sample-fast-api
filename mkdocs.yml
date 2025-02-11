@@ -1,0 +1,11 @@
+site_name: My Docs
+theme:
+  name: material
+  palette:
+    scheme: slate  # Use 'default' for light mode
+    primary: deep purple
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - search.suggest
+
