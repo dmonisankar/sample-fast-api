@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-mkdocs" class="md-skip">
+        <a href="#sample-project-for-agentic-apps-backend" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Welcome to MkDocs
+              Sample project for Agentic Apps Backend
             
           </span>
         </div>
@@ -178,7 +178,7 @@
   
     
   
-  Welcome to MkDocs
+  Sample project for Agentic Apps Backend
 
       </a>
     </li>
@@ -238,7 +238,7 @@
           
   
   <span class="md-ellipsis">
-    Welcome to MkDocs
+    Sample project for Agentic Apps Backend
     
   </span>
   
@@ -250,7 +250,7 @@
         
   
   <span class="md-ellipsis">
-    Welcome to MkDocs
+    Sample project for Agentic Apps Backend
     
   </span>
   
@@ -273,9 +273,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#mkdocs-commands" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Mkdocs Commands
     </span>
   </a>
   
@@ -325,9 +325,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#mkdocs-commands" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Mkdocs Commands
     </span>
   </a>
   
@@ -358,9 +358,9 @@
 
 
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<h1 id="sample-project-for-agentic-apps-backend">Sample project for Agentic Apps Backend</h1>
+<p>This project has all the construct required to build agentic application backend.</p>
+<h2 id="mkdocs-commands">Mkdocs Commands</h2>
 <ul>
 <li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
 <li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
@@ -368,11 +368,35 @@
 <li><code>mkdocs -h</code> - Print help message and exit.</li>
 </ul>
 <h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre>
+<p>.
+├── README.md<br />
+├── app<br />
+│   ├── <strong>init</strong>.py<br />
+│   ├── config.py<br />
+│   ├── database.py<br />
+│   ├── main.py<br />
+│   ├── models.py<br />
+│   ├── routes.py<br />
+│   ├── schemas.py<br />
+│   ├── services<br />
+│   │   ├── <strong>init</strong>.py<br />
+│   │   ├── agentic_calculation.py<br />
+│   │   ├── langraph_agentic_calculation.py<br />
+│   │   ├── langraph_agentic_calculation_enhanced.py<br />
+│   │   ├── llm_service.py<br />
+│   │   ├── llm_watsonx.py<br />
+│   │   └── tools<br />
+│   │       ├── <strong>init</strong>.py<br />
+│   │       ├── calculation_tools.py<br />
+│   │       ├── prebuilt_tools.py<br />
+│   │       └── tool_input.json<br />
+│   └── utils.py<br />
+├── docs<br />
+│   └── index.md<br />
+├── mkdocs.yml<br />
+├── pyproject.toml<br />
+├── requirements.txt<br />
+└── uv.lock  </p>
 
 
 
