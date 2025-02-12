@@ -3,3 +3,6 @@ __pycache__
 .py311
 .vscode
 .cache
+.mypy_cache
+.ruff_cache
+.venv
