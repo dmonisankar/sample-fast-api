@@ -38,7 +38,7 @@ format:
 
 # Clean up generated files
 clean:
-	rm -rf __pycache__ .pytest_cache $(VENV)
+	rm -rf __pycache__ .pytest_cache $(VENV) .cache .ruff_cache
 
 # Help menu
 help:
