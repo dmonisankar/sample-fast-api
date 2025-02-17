@@ -1,5 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage
+import time
 
 
 from app.config import OPENAI_API_KEY
@@ -22,3 +23,14 @@ async def get_llm_response(prompt: str) -> str:
         return response.content
     except Exception as e:
         return f"Error: {str(e)}"
+
+
+async def ai_response_stream(prompt: str):
+    """Calls OpenAI API using LangChain and streams the response."""
+    try:
+        async for chunk in llm.astream([HumanMessage(content=prompt)]):
+            if chunk.content:
+                yield chunk.content  # Yield response chunks as they arrive
+                time.sleep(1)
+    except Exception as e:
+        yield f"Error: {str(e)}"

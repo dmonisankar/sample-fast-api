@@ -3,13 +3,14 @@ from bson import ObjectId
 from app.database import collection
 from app.schemas import AgentSchema, UpdateAgentSchema, LLMRequest, LLMRequestWithMemory
 from app.models import AgentDB
-from app.services.llm_service import get_llm_response
+from app.services.llm_service import get_llm_response, ai_response_stream
 from app.services.agentic_calculation import get_calculation
 from app.services.langraph_agentic_calculation import get_langraph_calculation
 from app.services.langraph_agentic_calculation_enhanced import (
     get_langraph_calculation_with_memory,
 )
 from app.services.llm_watsonx import get_info_watsonx
+from fastapi.responses import StreamingResponse
 
 router = APIRouter()
 
@@ -131,3 +132,12 @@ async def ask_watson(request: LLMRequest):
         raise HTTPException(status_code=500, detail=response)
 
     return {"prompt": request.prompt, "response": response}
+
+
+@router.post("/stream")
+async def stream(request: LLMRequest):
+    return StreamingResponse(
+        ai_response_stream(request.prompt),
+        media_type="text/event-stream",
+        headers={"Content-Type": "text/event-stream"},
+    )
