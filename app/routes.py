@@ -10,6 +10,7 @@ from app.services.langraph_agentic_calculation_enhanced import (
     get_langraph_calculation_with_memory,
 )
 from app.services.llm_watsonx import get_info_watsonx
+from app.services.langraph_agent_researcher import get_research_results
 from fastapi.responses import StreamingResponse
 
 router = APIRouter()
@@ -141,3 +142,14 @@ async def stream(request: LLMRequest):
         media_type="text/event-stream",
         headers={"Content-Type": "text/event-stream"},
     )
+
+
+@router.post("/langraph_research/")
+async def research_agent(request: LLMRequest):
+    """Takes user input (prompt) and uses a research agent to find and summarize information."""
+    response = await get_research_results(request.prompt)
+
+    if "Error" in response:
+        raise HTTPException(status_code=500, detail=response)
+
+    return {"prompt": request.prompt, "response": response}
