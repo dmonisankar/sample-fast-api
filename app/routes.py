@@ -12,8 +12,22 @@ from app.services.langraph_agentic_calculation_enhanced import (
 from app.services.llm_watsonx import get_info_watsonx
 from app.services.langraph_agent_researcher import get_research_results
 from fastapi.responses import StreamingResponse
+from app.config import PHOENIX_ENDPOINT
+from phoenix.otel import register
+from openinference.instrumentation.langchain import LangChainInstrumentor
+
 
 router = APIRouter()
+
+
+# configure the Phoenix tracer
+tracer_provider = register(
+    project_name="md-llm-app",  # Default is 'default'
+    auto_instrument=True,  # See 'Trace all calls made to a library' below
+    endpoint=PHOENIX_ENDPOINT,
+)
+tracer = tracer_provider.get_tracer(__name__)
+LangChainInstrumentor().instrument(tracer_provider=tracer_provider)
 
 
 # Create an agent
