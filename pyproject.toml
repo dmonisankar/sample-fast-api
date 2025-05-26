@@ -70,6 +70,7 @@ dependencies = [
     "orjson==3.10.15",
     "packaging==24.2",
     "pandas==2.1.4",
+    "payi>=0.1.0a74",
     "propcache==0.2.1",
     "pyautogen==0.7.3",
     "pydantic==2.10.6",

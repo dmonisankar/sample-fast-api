@@ -7,6 +7,7 @@ import os
 from langchain_core.prompts import PromptTemplate
 from tavily import TavilyClient
 from dotenv import load_dotenv
+from app.config import PAYI_API_KEY
 
 # Load environment variables
 load_dotenv()
@@ -87,7 +88,10 @@ def summarize_information(text: str) -> str:
 
 
 # Set up LLM
-llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
+
+llm = ChatOpenAI(
+    model="gpt-3.5-turbo-0125", default_headers={"xProxy-api-key": PAYI_API_KEY}
+)
 
 # Configure tools
 tools = [search_web, summarize_information]

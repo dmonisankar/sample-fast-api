@@ -1,11 +1,11 @@
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage
-
+from app.config import PAYI_API_KEY
 
 from app.config import OPENAI_API_KEY
 
 # Initialize LangChain Chat Model
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=OPENAI_API_KEY)
+# llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=OPENAI_API_KEY)
 
 model = "gpt-3.5-turbo"
 llm_config = {
@@ -13,6 +13,11 @@ llm_config = {
     "temperature": 0.4,
     "api_key": OPENAI_API_KEY,
 }
+llm = ChatOpenAI(
+    model=model,
+    openai_api_key=OPENAI_API_KEY,
+    default_headers={"xProxy-api-key": PAYI_API_KEY},
+)
 
 
 async def get_llm_response(prompt: str) -> str:
