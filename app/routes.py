@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from bson import ObjectId
-from app.database import collection
+# from app.database import collection
 from app.schemas import AgentSchema, UpdateAgentSchema, LLMRequest, LLMRequestWithMemory
 from app.models import AgentDB
 from app.services.llm_service import get_llm_response, ai_response_stream
