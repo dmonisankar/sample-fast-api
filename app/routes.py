@@ -17,7 +17,7 @@ from app.config import ARIZE_API_KEY, ARIZE_SPACE_ID
 # from phoenix.otel import register
 from arize.otel import register
 from openinference.instrumentation.langchain import LangChainInstrumentor
-
+from payi.lib.instrument import payi_instrument
 
 router = APIRouter()
 
@@ -26,6 +26,8 @@ tracer_provider = register(
     api_key=ARIZE_API_KEY,
     project_name="md-llm-app",  # Default is 'default'
 )
+
+payi_instrument()
 
 # configure the Phoenix tracer
 # tracer_provider = register(

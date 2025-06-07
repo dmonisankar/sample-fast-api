@@ -87,6 +87,7 @@ def summarize_information(text: str) -> str:
 
 
 # Set up LLM
+
 llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
 
 # Configure tools
