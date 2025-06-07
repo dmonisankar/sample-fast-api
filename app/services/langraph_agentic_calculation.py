@@ -10,13 +10,10 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import START, StateGraph
 from langgraph.prebuilt import tools_condition
 from langgraph.prebuilt import ToolNode
-from app.config import PAYI_API_KEY
 
 tools = [add_numbers, multiply_numbers, divide_number]
 # llm = ChatOpenAI(model="gpt-4o")
-llm = ChatOpenAI(
-    model="gpt-3.5-turbo-0125", default_headers={"xProxy-api-key": PAYI_API_KEY}
-)
+llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
 
 # For this ipynb we set parallel tool calling to false as math generally is done sequentially, and this time we have 3 tools that can do math
 # the OpenAI model specifically defaults to parallel tool calling for efficiency, see https://python.langchain.com/docs/how_to/tool_calling_parallel/

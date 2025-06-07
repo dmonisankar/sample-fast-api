@@ -27,7 +27,7 @@ tracer_provider = register(
     project_name="md-llm-app",  # Default is 'default'
 )
 
-payi_instrument(config={"proxy": True})
+payi_instrument()
 
 # configure the Phoenix tracer
 # tracer_provider = register(
