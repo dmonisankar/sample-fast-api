@@ -1,13 +1,12 @@
-# from langchain_openai import ChatOpenAI
-# from langchain_core.messages import HumanMessage, SystemMessage
-# from langchain_core.tools import tool
-# from langgraph.graph import MessagesState, StateGraph, START
-# from langgraph.prebuilt import tools_condition, ToolNode
-# import os
-# from langchain_core.prompts import PromptTemplate
-# from tavily import TavilyClient
-# from dotenv import load_dotenv
-# from app.config import PAYI_API_KEY
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.tools import tool
+from langgraph.graph import MessagesState, StateGraph, START
+from langgraph.prebuilt import tools_condition, ToolNode
+import os
+from langchain_core.prompts import PromptTemplate
+from tavily import TavilyClient
+from dotenv import load_dotenv
 
 # # Load environment variables
 # load_dotenv()
@@ -89,9 +88,7 @@
 
 # # Set up LLM
 
-# llm = ChatOpenAI(
-#     model="gpt-3.5-turbo-0125", default_headers={"xProxy-api-key": PAYI_API_KEY}
-# )
+llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
 
 # # Configure tools
 # tools = [search_web, summarize_information]
