@@ -74,7 +74,7 @@ builder.add_conditional_edges(
 builder.add_edge("tools", "assistant")
 memory = MemorySaver()
 react_graph_memory = builder.compile(checkpointer=memory)
-react_graph = builder.compile()
+# react_graph = builder.compile()
 
 
 async def get_langraph_calculation_with_memory(
