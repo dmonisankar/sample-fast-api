@@ -27,6 +27,23 @@ tracer_provider = register(
     project_name="md-llm-app",  # Default is 'default'
 )
 
+import logging
+
+# Set the logging level to DEBUG
+logger = logging.getLogger("payi.instrument")
+logger.setLevel(logging.DEBUG)
+
+# Create a console handler and set the handler's level to DEBUG
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+
+# Create and set a formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+
+# Add the console handler to the logger
+logger.addHandler(console_handler)
+
 payi_instrument()
 
 # configure the Phoenix tracer
